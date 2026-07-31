@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://7colrcc73kwc"]
+
+[ext_resource type="PackedScene" uid="uid://2f811vnix7fs" path="res://scenes/minion.tscn" id="1_nnsk1"]
+
+[node name="world" type="Node2D" unique_id=177771181]
+
+[node name="minion" parent="." unique_id=1289145001 instance=ExtResource("1_nnsk1")]
+position = Vector2(-78, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1884279158]
