@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2f811vnix7fs"]
 
-[ext_resource type="Texture2D" uid="uid://bwrhikkh6jc48" path="res://icon.svg" id="1_7n1am"]
 [ext_resource type="Script" uid="uid://f1gm1ydx4w1i" path="res://scripts/minion.gd" id="1_y8etf"]
+[ext_resource type="Texture2D" uid="uid://bcj1xwwsd2b5d" path="res://sprites/seal.png" id="3_b4arb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(45, 46)
@@ -9,10 +9,18 @@ size = Vector2(45, 46)
 [node name="minion" type="CharacterBody2D" unique_id=1289145001]
 script = ExtResource("1_y8etf")
 
+[node name="SelectionOutline" type="Sprite2D" parent="." unique_id=1529388998]
+visible = false
+modulate = Color(3.2944162, 3.2944162, 3.2944162, 1)
+texture_filter = 1
+scale = Vector2(0.47507817, 0.47507817)
+texture = ExtResource("3_b4arb")
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1680998356]
+texture_filter = 1
 position = Vector2(-1.1920929e-07, -1.1920929e-07)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_7n1am")
+texture = ExtResource("3_b4arb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=764601325]
 shape = SubResource("RectangleShape2D_g4v7s")
