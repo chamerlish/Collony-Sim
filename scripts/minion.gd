@@ -33,30 +33,8 @@ func check_select() -> void:
 			target_position = mouse_position
 			current_state = characterState.WALKING
 			selected = false
-		
-
+	
 func state_machine() -> void:
-	match current_state:
-		characterState.IDLE:
-			check_select()
-		characterState.WALKING:
-			check_select()
-			var direction = (target_position - global_position).normalized()
-			velocity = direction * current_speed
-			if target_position.distance_to(global_position) < 1:
-				velocity = Vector2.ZERO
-				current_state = characterState.IDLE
-		characterState.WORKING:
-			pass
-		#characterState.SELECTED:
-		#	if Input.is_action_just_pressed("click"):
-		#		target_position = get_global_mouse_position()
-		#		current_state = characterState.WALKING
-		#	elif target_position.distance_to(global_position) < 1:
-		#		velocity = Vector2.ZERO
-		#		current_state = characterState.IDLE
-
-func state_machine2() -> void:
 	match current_state:
 		characterState.IDLE:
 			check_select()
@@ -79,5 +57,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	state_machine2()
+	state_machine()
 	move_and_slide()
