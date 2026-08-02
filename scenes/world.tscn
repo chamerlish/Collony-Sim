@@ -1,8 +1,26 @@
 [gd_scene format=3 uid="uid://7colrcc73kwc"]
 
 [ext_resource type="PackedScene" uid="uid://2f811vnix7fs" path="res://scenes/minion.tscn" id="1_nnsk1"]
+[ext_resource type="Texture2D" uid="uid://bbb5bhb37jtqv" path="res://sprites/floor_tile.png" id="2_rwgxs"]
 
 [node name="world" type="Node2D" unique_id=177771181]
+
+[node name="Background" type="TextureRect" parent="." unique_id=220156065]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -760.0
+offset_top = -336.0
+offset_right = 800.0
+offset_bottom = 336.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_rwgxs")
+stretch_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1235952061]
 
 [node name="minion" parent="." unique_id=1289145001 instance=ExtResource("1_nnsk1")]
 position = Vector2(-78, 0)
