@@ -4,7 +4,6 @@ enum characterState{
 	IDLE,
 	WALKING,
 	WORKING,
-	SELECTED
 }
 
 const MAX_SPEED: float = 50
@@ -42,11 +41,17 @@ func state_machine() -> void:
 			check_select()
 			var direction = (target_position - global_position).normalized()
 			velocity = direction * current_speed
+			queue_redraw()
 			if target_position.distance_to(global_position) < 1:
 				velocity = Vector2.ZERO
 				current_state = characterState.IDLE
 		characterState.WORKING:
 			pass
+			
+func _draw() -> void:
+	if current_state != characterState.WALKING:
+		return
+	draw_line(Vector2.ZERO, to_local(target_position), Color.WHITE)
 
 func _process(_delta: float) -> void:
 	state_machine()
