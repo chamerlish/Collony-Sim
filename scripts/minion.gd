@@ -17,6 +17,7 @@ const BOUNCE_PARAM = 0.1
 var current_state: characterState
 var target_position: Vector2
 var current_speed: float
+
 var selected: bool = false:
 	set(value):
 		if value:
@@ -27,8 +28,10 @@ var selected: bool = false:
 			selection_outline.hide()
 		selected = value
 		
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var selection_outline: Sprite2D = $SelectionOutline
+@onready var sprite: Sprite2D = $SpriteBundle/Sprite2D
+@onready var selection_outline: Sprite2D = $SpriteBundle/SelectionOutline
+@onready var sprite_bundle: Node2D = $SpriteBundle
+
 @onready var squish_sfx: AudioStreamPlayer2D = $SquishSFX
 
 func _play_squish_sfx():
@@ -38,17 +41,18 @@ func _play_squish_sfx():
 
 func _bounce():
 	var x_scale = randf_range(BOUNCE_PARAM, SIZE_SUM - BOUNCE_PARAM)
-	sprite.scale = Vector2(x_scale, 1.2 - x_scale)
-	selection_outline.scale = Vector2(x_scale, 1.2 - x_scale)
+	sprite_bundle.scale = Vector2(x_scale, SIZE_SUM - x_scale)
 	_play_squish_sfx()
 	
 func check_select() -> void:
 	if Input.is_action_just_pressed("click"):
 		var mouse_position = get_global_mouse_position()
+		
 		if mouse_position.distance_to(global_position) < 25:
 			selected = !selected
 			_bounce()
 			return
+			
 		if selected:
 			target_position = mouse_position
 			current_state = characterState.WALKING
@@ -61,12 +65,18 @@ func state_machine() -> void:
 			check_select()
 		characterState.WALKING:
 			check_select()
+			
 			var direction = (target_position - global_position).normalized()
 			velocity = direction * current_speed
-			queue_redraw()
+			
 			if target_position.distance_to(global_position) < 1:
 				velocity = Vector2.ZERO
 				current_state = characterState.IDLE
+			else:
+				sprite.flip_h = bool(clamp(velocity.x, 0, 1))
+				selection_outline.flip_h = bool(clamp(velocity.x, 0, 1))
+			
+			queue_redraw()
 		characterState.WORKING:
 			pass
 			
@@ -81,6 +91,4 @@ func _process(delta: float) -> void:
 	reset_sprite_size(delta)
 	
 func reset_sprite_size(delta: float):
-	sprite.scale = sprite.scale.lerp(DEFAULT_SPRITE_SIZE, delta * 10)
-	selection_outline.scale = sprite.scale.lerp(DEFAULT_SPRITE_SIZE, delta * 10)
-	
+	sprite_bundle.scale = sprite_bundle.scale.lerp(DEFAULT_SPRITE_SIZE, delta * 10)
