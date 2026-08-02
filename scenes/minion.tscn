@@ -3,14 +3,16 @@
 [ext_resource type="Script" uid="uid://f1gm1ydx4w1i" path="res://scripts/minion.gd" id="1_y8etf"]
 [ext_resource type="Texture2D" uid="uid://xq6ujhti61rd" path="res://sprites/seal_outline.png" id="2_b4arb"]
 [ext_resource type="Texture2D" uid="uid://bcj1xwwsd2b5d" path="res://sprites/seal.png" id="3_b4arb"]
+[ext_resource type="AudioStream" uid="uid://dllel1t2cxymh" path="res://sounds/sfx/squish sfx.wav" id="4_1ddg2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(45, 46)
+size = Vector2(32, 32)
 
 [node name="minion" type="CharacterBody2D" unique_id=1289145001]
 script = ExtResource("1_y8etf")
 
 [node name="SelectionOutline" type="Sprite2D" parent="." unique_id=1529388998]
+visible = false
 modulate = Color(3.2944162, 3.2944162, 3.2944162, 1)
 texture_filter = 1
 scale = Vector2(0.6, 0.6)
@@ -24,3 +26,7 @@ texture = ExtResource("3_b4arb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=764601325]
 shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="SquishSFX" type="AudioStreamPlayer2D" parent="." unique_id=286053286]
+stream = ExtResource("4_1ddg2")
+bus = &"SFX"
