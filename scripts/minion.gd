@@ -6,25 +6,27 @@ enum characterState{
 	WORKING,
 }
 
-const MAX_SPEED: float = 100
+const MAX_SPEED: float = 200
 const SPEED_DIVIDER: float = 2
+const STARTING_SPEED: float = 20
 
-const DEFAULT_SPRITE_SIZE = Vector2(0.6, 0.6)
+const DEFAULT_SPRITE_SIZE = Vector2.ONE
 
 const SIZE_SUM = DEFAULT_SPRITE_SIZE.x + DEFAULT_SPRITE_SIZE.y
 const BOUNCE_PARAM = 0.1
 
 var current_state: characterState
 var target_position: Vector2
+var target_speed: float
 var current_speed: float
 
 var selected: bool = false:
 	set(value):
 		if value:
-			current_speed = MAX_SPEED / SPEED_DIVIDER
+			target_speed = MAX_SPEED / SPEED_DIVIDER
 			selection_outline.show()
 		else: 
-			current_speed = MAX_SPEED
+			target_speed = MAX_SPEED
 			selection_outline.hide()
 		selected = value
 		
@@ -63,16 +65,20 @@ func state_machine() -> void:
 	match current_state:
 		characterState.IDLE:
 			check_select()
+			current_speed = STARTING_SPEED
 		characterState.WALKING:
 			check_select()
 			
 			var direction = (target_position - global_position).normalized()
-			velocity = direction * current_speed
 			
-			if target_position.distance_to(global_position) < 1:
-				velocity = Vector2.ZERO
-				current_state = characterState.IDLE
+			if target_position.distance_to(global_position) < 100:
+				velocity = velocity.lerp(Vector2.ZERO, 0.03)
+				if velocity.length() < 1:
+					velocity = Vector2.ZERO
+					current_state = characterState.IDLE
 			else:
+				current_speed = lerp(current_speed, target_speed, 0.03)
+				velocity = direction * current_speed
 				sprite.flip_h = bool(clamp(velocity.x, 0, 1))
 				selection_outline.flip_h = bool(clamp(velocity.x, 0, 1))
 			

@@ -12,7 +12,6 @@ size = Vector2(32, 32)
 script = ExtResource("1_y8etf")
 
 [node name="SpriteBundle" type="Node2D" parent="." unique_id=1161396344]
-scale = Vector2(0.6, 0.6)
 
 [node name="SelectionOutline" type="Sprite2D" parent="SpriteBundle" unique_id=1529388998]
 visible = false
