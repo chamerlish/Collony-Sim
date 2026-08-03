@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+selectables="seals and so on (anything thats selectable)"
+
 [input]
 
 click={

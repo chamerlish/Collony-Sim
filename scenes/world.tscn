@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://2f811vnix7fs" path="res://scenes/minion.tscn" id="1_nnsk1"]
 [ext_resource type="Texture2D" uid="uid://bbb5bhb37jtqv" path="res://sprites/floor_tile.png" id="2_rwgxs"]
+[ext_resource type="Script" uid="uid://b4ek7lfn0qlru" path="res://scripts/minion_selector.gd" id="3_4wyf3"]
 
 [node name="world" type="Node2D" unique_id=177771181]
 
@@ -22,7 +23,17 @@ stretch_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1235952061]
 
-[node name="minion" parent="." unique_id=1289145001 instance=ExtResource("1_nnsk1")]
+[node name="minion" parent="." unique_id=1289145001 groups=["selectables"] instance=ExtResource("1_nnsk1")]
 position = Vector2(-78, 0)
 
+[node name="minion2" parent="." unique_id=393651713 groups=["selectables"] instance=ExtResource("1_nnsk1")]
+position = Vector2(41, 0)
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1884279158]
+
+[node name="MinionSelector" type="Control" parent="." unique_id=721690716]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_4wyf3")
