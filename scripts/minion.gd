@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Minion
+
 enum characterState{
 	IDLE,
 	WALKING,
@@ -98,3 +100,6 @@ func _process(delta: float) -> void:
 	
 func reset_sprite_size(delta: float):
 	sprite_bundle.scale = sprite_bundle.scale.lerp(DEFAULT_SPRITE_SIZE, delta * 10)
+
+func is_in_selection_box(top_left: Vector2, bottom_right: Vector2) -> bool:
+	return (global_position.x > top_left.x and global_position.y > top_left.y) and (global_position.x < bottom_right.x and global_position.y < bottom_right.y)

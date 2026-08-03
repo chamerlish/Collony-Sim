@@ -8,7 +8,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 32)
 
-[node name="minion" type="CharacterBody2D" unique_id=1289145001]
+[node name="Minion" type="CharacterBody2D" unique_id=1289145001]
+motion_mode = 1
 script = ExtResource("1_y8etf")
 
 [node name="SpriteBundle" type="Node2D" parent="." unique_id=1161396344]
