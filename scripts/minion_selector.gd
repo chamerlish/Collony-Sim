@@ -6,52 +6,29 @@ var top_left: Vector2
 var bottom_right: Vector2
 var box_size: Vector2
 
-
-var is_selecting: bool
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 func update_selection() -> void:
 	var selectables = get_tree().get_nodes_in_group("selectables")
-	for minion: Minion in selectables:
-		if minion.is_in_selection_box(top_left, bottom_right):
+	for minion: Node2D in selectables:
+		if (minion.global_position.x > top_left.x and minion.global_position.y > top_left.y) and (minion.global_position.x < bottom_right.x and minion.global_position.y < bottom_right.y):
 			minion.selected = true
 		else:
 			minion.selected = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("click"):
 		start_pos = get_global_mouse_position()
-		end_pos = start_pos
-		is_selecting = true
-
 	elif Input.is_action_pressed("click"):
-		end_pos = get_global_mouse_position()
-		
-		top_left = Vector2(
-			min(start_pos.x, end_pos.x),
-			min(start_pos.y, end_pos.y)
-		)
-		bottom_right = Vector2(
-			max(end_pos.x, start_pos.x), 
-			max(end_pos.y, start_pos.y)
-		)
-		
+		top_left = start_pos.min(end_pos)
+		bottom_right = start_pos.max(end_pos)
 		box_size = abs(end_pos - start_pos)
-		is_selecting = true
+		end_pos = get_global_mouse_position()
 		update_selection()
-
-	else:
-		is_selecting = false
-	
-	queue_redraw()
+		queue_redraw()
 
 func _draw() -> void:
-	if !is_selecting:
-		return
-		
-	draw_rect(Rect2(top_left, box_size), Color(0.0, 0.0, 0.0, 0.19), true)
-	draw_rect(Rect2(top_left, box_size), Color(Color.WHITE, 0.9), false, 2.0)
+	draw_rect(Rect2(top_left, box_size), Color.WHITE, false)
