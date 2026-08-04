@@ -65,10 +65,9 @@ func check_select() -> void:
 			_bounce()
 
 func free_fishing_spot() -> void:
-	current_state = characterState.IDLE
 	current_using_spot = null
+	current_state = characterState.IDLE
 
-#comment yay
 func state_machine() -> void:
 	match current_state:
 		characterState.IDLE:
@@ -95,14 +94,13 @@ func state_machine() -> void:
 					current_using_spot = current_colider
 					current_using_spot.is_used = true
 					current_using_spot.free_seal.connect(free_fishing_spot)
+					current_using_spot._start_fishing()
 					current_state = characterState.WORKING
 
 			queue_redraw()
 			
 		characterState.WORKING:
 			velocity = Vector2.ZERO
-			if current_using_spot:
-				current_using_spot.fish_left -= 1
 			
 func _draw() -> void:
 	if current_state != characterState.WALKING:
@@ -110,8 +108,6 @@ func _draw() -> void:
 	draw_line(Vector2.ZERO, to_local(target_position), Color.WHITE, 3.0)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		Utility.amount_fish += 1
 	state_machine()
 	move_and_slide()
 	reset_sprite_size(delta)

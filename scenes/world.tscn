@@ -44,3 +44,6 @@ offset_bottom = 40.0
 script = ExtResource("3_4wyf3")
 
 [node name="HUD" parent="." unique_id=811187789 instance=ExtResource("5_71j4m")]
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1914247032]
+current = true

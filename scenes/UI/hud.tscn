@@ -33,6 +33,6 @@ expand_mode = 2
 
 [node name="FishCount" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1779019974]
 layout_mode = 2
-text = "1"
+text = "0"
 label_settings = SubResource("LabelSettings_71j4m")
 script = ExtResource("3_y5tme")

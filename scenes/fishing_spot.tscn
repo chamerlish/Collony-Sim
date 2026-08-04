@@ -14,3 +14,8 @@ texture = ExtResource("2_ukq2v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1820665072]
 shape = SubResource("CircleShape2D_g4v7s")
+
+[node name="FishingDelayTimer" type="Timer" parent="." unique_id=1699095185]
+wait_time = 4.0
+
+[connection signal="timeout" from="FishingDelayTimer" to="." method="_on_timer_timeout"]
