@@ -110,6 +110,8 @@ func _draw() -> void:
 	draw_line(Vector2.ZERO, to_local(target_position), Color.WHITE, 3.0)
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		Utility.amount_fish += 1
 	state_machine()
 	move_and_slide()
 	reset_sprite_size(delta)
