@@ -25,7 +25,7 @@ func update_selection() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("click"):
 		start_pos = get_global_mouse_position()
-		end_pos = start_pos
+		#end_pos = start_pos
 		is_selecting = true
 
 	elif Input.is_action_pressed("click"):
@@ -39,15 +39,17 @@ func _process(_delta: float) -> void:
 			max(end_pos.x, start_pos.x), 
 			max(end_pos.y, start_pos.y)
 		)
-		
-		box_size = abs(end_pos - start_pos)
-		is_selecting = true
-		update_selection()
+		if !bottom_right.is_equal_approx(top_left):
+			box_size = abs(end_pos - start_pos)
+			is_selecting = true
+			update_selection()
+			queue_redraw()
 
 	else:
 		is_selecting = false
+		queue_redraw()
 	
-	queue_redraw()
+	
 
 func _draw() -> void:
 	if !is_selecting:

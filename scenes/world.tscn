@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://2f811vnix7fs" path="res://scenes/minion.tscn" id="1_nnsk1"]
 [ext_resource type="Texture2D" uid="uid://bbb5bhb37jtqv" path="res://sprites/floor_tile.png" id="2_rwgxs"]
 [ext_resource type="Script" uid="uid://b4ek7lfn0qlru" path="res://scripts/minion_selector.gd" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://cfs1p7wg27rnj" path="res://scenes/fishing_spot.tscn" id="3_71j4m"]
+[ext_resource type="Texture2D" uid="uid://bwrhikkh6jc48" path="res://icon.svg" id="4_k0juu"]
 
 [node name="world" type="Node2D" unique_id=177771181]
 
@@ -31,9 +33,26 @@ position = Vector2(41, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1884279158]
 
+[node name="FishingSpot" parent="." unique_id=1744906458 instance=ExtResource("3_71j4m")]
+position = Vector2(524, -157)
+
 [node name="MinionSelector" type="Control" parent="." unique_id=721690716]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_4wyf3")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1730730499]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD" unique_id=1577567431]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FishTexture" type="TextureRect" parent="HUD/HBoxContainer" unique_id=37455048]
+layout_mode = 2
+texture = ExtResource("4_k0juu")
+
+[node name="FishCount" type="Label" parent="HUD/HBoxContainer" unique_id=31765626]
+layout_mode = 2
+text = "1 fish"

@@ -21,6 +21,7 @@ var current_state: characterState
 var target_position: Vector2
 var target_speed: float
 var current_speed: float
+var current_using_spot: FishingSpot
 
 var selected: bool = false:
 	set(value):
@@ -62,7 +63,12 @@ func check_select() -> void:
 			current_state = characterState.WALKING
 			selected = false
 			_bounce()
-	
+
+func free_fishing_spot() -> void:
+	current_state = characterState.IDLE
+	current_using_spot = null
+
+
 func state_machine() -> void:
 	match current_state:
 		characterState.IDLE:
@@ -83,10 +89,20 @@ func state_machine() -> void:
 				velocity = direction * current_speed
 				sprite.flip_h = bool(clamp(velocity.x, 0, 1))
 				selection_outline.flip_h = bool(clamp(velocity.x, 0, 1))
-			
+			for i in get_slide_collision_count():
+				var current_colider = get_slide_collision(i).get_collider() as FishingSpot
+				if current_colider and !current_colider.is_used:
+					current_using_spot = current_colider
+					current_using_spot.is_used = true
+					current_using_spot.free_seal.connect(free_fishing_spot)
+					current_state = characterState.WORKING
+
 			queue_redraw()
+			
 		characterState.WORKING:
-			pass
+			velocity = Vector2.ZERO
+			if current_using_spot:
+				current_using_spot.fish_left -= 1
 			
 func _draw() -> void:
 	if current_state != characterState.WALKING:
