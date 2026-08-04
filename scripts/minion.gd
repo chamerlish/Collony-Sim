@@ -68,7 +68,7 @@ func free_fishing_spot() -> void:
 	current_state = characterState.IDLE
 	current_using_spot = null
 
-
+#comment yay
 func state_machine() -> void:
 	match current_state:
 		characterState.IDLE:
