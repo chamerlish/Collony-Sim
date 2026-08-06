@@ -76,27 +76,31 @@ func state_machine() -> void:
 		characterState.WALKING:
 			check_select()
 			
-			var direction = (target_position - global_position).normalized()
+			var distance = global_position.distance_to(target_position)
+			var direction = global_position.direction_to(target_position)
 			
-			if target_position.distance_to(global_position) < 100:
-				velocity = velocity.lerp(Vector2.ZERO, 0.03)
-				if velocity.length() < 1:
-					velocity = Vector2.ZERO
-					current_state = characterState.IDLE
+			if distance < 5:
+				velocity = Vector2.ZERO
+				current_state = characterState.IDLE
 			else:
-				current_speed = lerp(current_speed, target_speed, 0.03)
+				var desired_speed = target_speed
+				
+				if distance < 100:
+					desired_speed = target_speed * (distance / 100)
+					desired_speed = max(STARTING_SPEED, desired_speed)
+					
+				current_speed = lerp(current_speed, desired_speed, 0.1)
 				velocity = direction * current_speed
 				sprite.flip_h = bool(clamp(velocity.x, 0, 1))
 				selection_outline.flip_h = bool(clamp(velocity.x, 0, 1))
-			for i in get_slide_collision_count():
-				var current_colider = get_slide_collision(i).get_collider() as FishingSpot
-				if current_colider and !current_colider.is_used:
-					current_using_spot = current_colider
-					current_using_spot.is_used = true
-					current_using_spot.free_seal.connect(free_fishing_spot)
-					current_using_spot._start_fishing()
-					current_state = characterState.WORKING
-
+				for i in get_slide_collision_count():
+					var current_colider = get_slide_collision(i).get_collider() as FishingSpot
+					if current_colider and !current_colider.is_used:
+						current_using_spot = current_colider
+						current_using_spot.is_used = true
+						current_using_spot.free_seal.connect(free_fishing_spot)
+						current_using_spot._start_fishing()
+						current_state = characterState.WORKING
 			queue_redraw()
 			
 		characterState.WORKING:
