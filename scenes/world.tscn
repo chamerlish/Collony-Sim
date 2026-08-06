@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://b4ek7lfn0qlru" path="res://scripts/minion_selector.gd" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://cfs1p7wg27rnj" path="res://scenes/fishing_spot.tscn" id="3_71j4m"]
 [ext_resource type="PackedScene" uid="uid://cgw4lbhud21fd" path="res://scenes/UI/hud.tscn" id="5_71j4m"]
+[ext_resource type="PackedScene" uid="uid://cfuseyet5m58d" path="res://scenes/Utils/music_player.tscn" id="6_qfnet"]
+[ext_resource type="Script" uid="uid://c5jm11hwoyftc" path="res://resources/ost/ost_resource.gd" id="7_4mrxx"]
+[ext_resource type="Resource" uid="uid://blrm2qcfk0tdt" path="res://resources/ost/rats.tres" id="8_7r4gi"]
 
 [node name="world" type="Node2D" unique_id=177771181]
 
@@ -34,7 +37,7 @@ position = Vector2(41, 0)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1884279158]
 
 [node name="FishingSpot" parent="." unique_id=1744906458 instance=ExtResource("3_71j4m")]
-position = Vector2(524, -157)
+position = Vector2(-2, -86)
 
 [node name="MinionSelector" type="Control" parent="." unique_id=721690716]
 layout_mode = 3
@@ -47,3 +50,6 @@ script = ExtResource("3_4wyf3")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1914247032]
 current = true
+
+[node name="MusicPlayer" parent="." unique_id=712166401 instance=ExtResource("6_qfnet")]
+music_queue = Array[ExtResource("7_4mrxx")]([ExtResource("8_7r4gi")])

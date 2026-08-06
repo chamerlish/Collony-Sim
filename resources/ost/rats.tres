@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="OstResource" format=3 uid="uid://blrm2qcfk0tdt"]
+
+[ext_resource type="AudioStream" uid="uid://catf83sqevxcr" path="res://sounds/music/rats/rats intro.wav" id="1_6o5q5"]
+[ext_resource type="Script" uid="uid://c5jm11hwoyftc" path="res://resources/ost/ost_resource.gd" id="1_22y2c"]
+[ext_resource type="AudioStream" uid="uid://chtonmk0ya3vx" path="res://sounds/music/rats/rats loop.wav" id="2_xd617"]
+
+[resource]
+script = ExtResource("1_22y2c")
+intro_track = ExtResource("1_6o5q5")
+loop_track = ExtResource("2_xd617")
+metadata/_custom_type_script = "uid://c5jm11hwoyftc"

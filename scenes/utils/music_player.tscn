@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cfuseyet5m58d"]
+
+[ext_resource type="Script" uid="uid://crhcoofsyrfjh" path="res://scripts/utils/music_player.gd" id="1_8rg3p"]
+
+[node name="MusicPlayer" type="Node2D" unique_id=712166401]
+script = ExtResource("1_8rg3p")
+
+[node name="OstIntro" type="AudioStreamPlayer" parent="." unique_id=188837449]
+autoplay = true
+bus = &"Music"
+
+[node name="OstLoop" type="AudioStreamPlayer" parent="." unique_id=65765873]
+bus = &"Music"
+
+[connection signal="finished" from="OstIntro" to="." method="_on_ost_intro_finished"]
+[connection signal="finished" from="OstLoop" to="." method="_on_ost_loop_finished"]
