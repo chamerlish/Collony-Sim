@@ -24,14 +24,17 @@ var current_speed: float
 var current_using_spot: FishingSpot
 
 var selected: bool = false:
-	set(value):
-		if value:
+	set(new_selected):
+		
+		if selected != new_selected:
+			_bounce()
+		if new_selected:
 			target_speed = MAX_SPEED / SPEED_DIVIDER
 			selection_outline.show()
 		else: 
 			target_speed = MAX_SPEED
 			selection_outline.hide()
-		selected = value
+		selected = new_selected
 		
 @onready var sprite: Sprite2D = $SpriteBundle/Sprite2D
 @onready var selection_outline: Sprite2D = $SpriteBundle/SelectionOutline
@@ -55,14 +58,12 @@ func check_select() -> void:
 		
 		if mouse_position.distance_to(global_position) < 25:
 			selected = !selected
-			_bounce()
 			return
 			
 		if selected:
 			target_position = mouse_position
 			current_state = characterState.WALKING
 			selected = false
-			_bounce()
 
 func free_fishing_spot() -> void:
 	current_using_spot = null

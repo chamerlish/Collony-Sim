@@ -5,7 +5,8 @@
 [ext_resource type="Script" uid="uid://b4ek7lfn0qlru" path="res://scripts/minion_selector.gd" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://cfs1p7wg27rnj" path="res://scenes/fishing_spot.tscn" id="3_71j4m"]
 [ext_resource type="PackedScene" uid="uid://cgw4lbhud21fd" path="res://scenes/UI/hud.tscn" id="5_71j4m"]
-[ext_resource type="PackedScene" uid="uid://cfuseyet5m58d" path="res://scenes/Utils/music_player.tscn" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://bc4a6j853qemj" path="res://scenes/utils/world_camera.tscn" id="6_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://cfuseyet5m58d" path="res://scenes/utils/music_player.tscn" id="6_qfnet"]
 [ext_resource type="Script" uid="uid://c5jm11hwoyftc" path="res://resources/ost/ost_resource.gd" id="7_4mrxx"]
 [ext_resource type="Resource" uid="uid://blrm2qcfk0tdt" path="res://resources/ost/rats.tres" id="8_7r4gi"]
 
@@ -34,8 +35,6 @@ position = Vector2(-78, 0)
 [node name="minion2" parent="." unique_id=393651713 groups=["selectables"] instance=ExtResource("1_nnsk1")]
 position = Vector2(41, 0)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1884279158]
-
 [node name="FishingSpot" parent="." unique_id=1744906458 instance=ExtResource("3_71j4m")]
 position = Vector2(-2, -86)
 
@@ -47,6 +46,8 @@ offset_bottom = 40.0
 script = ExtResource("3_4wyf3")
 
 [node name="HUD" parent="." unique_id=811187789 instance=ExtResource("5_71j4m")]
+
+[node name="WorldCamera" parent="." unique_id=387235208 instance=ExtResource("6_7r4gi")]
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1914247032]
 current = true
