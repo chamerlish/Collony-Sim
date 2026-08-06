@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfs1p7wg27rnj"]
 
 [ext_resource type="Script" uid="uid://bdpyybgiypct" path="res://scripts/fishing_spot.gd" id="1_88uy3"]
-[ext_resource type="Texture2D" uid="uid://bwrhikkh6jc48" path="res://icon.svg" id="2_ukq2v"]
+[ext_resource type="Texture2D" uid="uid://ltepjxml7a6u" path="res://sprites/fishing_spots/unused_spots/nfishing_spot_1.png" id="2_88uy3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
 radius = 63.0
@@ -10,7 +10,8 @@ radius = 63.0
 script = ExtResource("1_88uy3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2107290022]
-texture = ExtResource("2_ukq2v")
+texture_filter = 1
+texture = ExtResource("2_88uy3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1820665072]
 shape = SubResource("CircleShape2D_g4v7s")
