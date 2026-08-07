@@ -31,9 +31,11 @@ var selected: bool = false:
 		if new_selected:
 			target_speed = MAX_SPEED / SPEED_DIVIDER
 			selection_outline.show()
+			Cursor.current_state = Cursor.MouseState.HOVER
 		else: 
 			target_speed = MAX_SPEED
 			selection_outline.hide()
+			Cursor.current_state = Cursor.MouseState.IDLE
 		selected = new_selected
 		
 @onready var sprite: Sprite2D = $SpriteBundle/Sprite2D

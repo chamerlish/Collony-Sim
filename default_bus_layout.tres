@@ -1,6 +1,33 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://bg1kh0hnfwjne"]
 
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+room_size = 0.96
+damping = 0.74
+spread = 0.84
+dry = 0.39
+wet = 0.14
+
+[sub_resource type="AudioEffectFilter" id="AudioEffectFilter_j3pel"]
+resource_name = "Filter"
+cutoff_hz = 174.0
+gain = 0.0
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j3pel"]
+resource_name = "Delay"
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_j3pel"]
+resource_name = "Limiter"
+
 [resource]
+bus/0/effect/0/effect = SubResource("AudioEffectReverb_j3pel")
+bus/0/effect/0/enabled = false
+bus/0/effect/1/effect = SubResource("AudioEffectFilter_j3pel")
+bus/0/effect/1/enabled = false
+bus/0/effect/2/effect = SubResource("AudioEffectDelay_j3pel")
+bus/0/effect/2/enabled = false
+bus/0/effect/3/effect = SubResource("AudioEffectLimiter_j3pel")
+bus/0/effect/3/enabled = false
 bus/1/name = &"SFX"
 bus/1/solo = false
 bus/1/mute = false

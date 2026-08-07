@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c6g0qvqvvcid0"]
+
+[ext_resource type="Texture2D" uid="uid://c8tye3sqlponn" path="res://sprites/textures/cursor/cursor.png" id="1_1beok"]
+[ext_resource type="Script" uid="uid://b8nb5gwc5eevc" path="res://scenes/UI/custom_cursor.gd" id="2_ppqvh"]
+
+[node name="CustomMouse" type="CanvasLayer" unique_id=317453121]
+script = ExtResource("2_ppqvh")
+
+[node name="MouseOrigin" type="Marker2D" parent="." unique_id=817734007]
+z_index = 10
+metadata/_edit_group_ = true
+
+[node name="MouseTexture" type="Sprite2D" parent="MouseOrigin" unique_id=1357903750]
+texture_filter = 1
+position = Vector2(24, 24)
+texture = ExtResource("1_1beok")
+hframes = 3

@@ -15,7 +15,6 @@ var is_used: bool
 
 @export var fish_per_tick: int = 1
 
-
 func _start_fishing() -> void:
 	fishing_delay_timer.start()
 

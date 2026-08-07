@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://bg1kh0hnfwjne"
 [autoload]
 
 Utility="*uid://7fnd2un20r2o"
+Cursor="*uid://c6g0qvqvvcid0"
 
 [display]
 
