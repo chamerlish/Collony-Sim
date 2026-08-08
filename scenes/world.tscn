@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cfuseyet5m58d" path="res://scenes/utils/music_player.tscn" id="6_qfnet"]
 [ext_resource type="Script" uid="uid://c5jm11hwoyftc" path="res://resources/ost/ost_resource.gd" id="7_4mrxx"]
 [ext_resource type="Resource" uid="uid://blrm2qcfk0tdt" path="res://resources/ost/rats.tres" id="8_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://beqixlsyh7j66" path="res://scenes/interractable_objects/ogloo.tscn" id="10_w7kh3"]
 
 [node name="world" type="Node2D" unique_id=177771181]
 
@@ -54,3 +55,6 @@ current = true
 
 [node name="MusicPlayer" parent="." unique_id=712166401 instance=ExtResource("6_qfnet")]
 music_queue = Array[ExtResource("7_4mrxx")]([ExtResource("8_7r4gi")])
+
+[node name="Ogloo" parent="." unique_id=1001107508 instance=ExtResource("10_w7kh3")]
+position = Vector2(-343, -86)

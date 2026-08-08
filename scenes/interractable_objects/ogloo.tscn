@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://beqixlsyh7j66"]
+
+[ext_resource type="Texture2D" uid="uid://d18170llkkkjc" path="res://sprites/textures/interractable_objects/base_igloo/base_igloo.png" id="1_67t76"]
+
+[node name="Ogloo" type="Area2D" unique_id=1001107508]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=284740613]
+texture_filter = 1
+texture = ExtResource("1_67t76")
